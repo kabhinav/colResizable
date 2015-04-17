@@ -308,7 +308,7 @@
 	var onResize = function(){
 		for(t in tables){
 			var t = tables[t], i, mw=0;
-		        if(t.hasClass(SIGNATURE)){
+		        if(typeof t !== "function" && t.hasClass(SIGNATURE)){
 			    t.removeClass(SIGNATURE);                                   //firefox doesn't like layout-fixed in some cases
                         }
 			if (t.f && t.w != t.width()) {					//if the the table's width has changed and it is in fixed mode
