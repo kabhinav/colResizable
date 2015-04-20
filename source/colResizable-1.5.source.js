@@ -321,7 +321,9 @@
 				for(i=0; i<t.ln; i++) t.c[i].css("width", M.round(1000*t.c[i].w/mw)/10 + "%").l=true;
 				//c.l locks the column, telling us that its c.w is outdated
 			}
-			syncGrips(t.addClass(SIGNATURE));
+		      if(typeof t !== "function"){
+			  syncGrips(t.addClass(SIGNATURE));
+		      }
 		}
 
 	};
