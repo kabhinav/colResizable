@@ -308,9 +308,9 @@
 	var onResize = function(){
 		for(t in tables){
 			var t = tables[t], i, mw=0;
-		        if(t.is("table") && t.hasClass(SIGNATURE)){
-			    t.removeClass(SIGNATURE);                                   //firefox doesn't like layout-fixed in some cases
-                        }
+		        // if(t.is("table") && t.hasClass(SIGNATURE)){
+			//     t.removeClass(SIGNATURE);                                   //firefox doesn't like layout-fixed in some cases
+                        // }
 			if (t.f && t.w != t.width()) {					//if the the table's width has changed and it is in fixed mode
 				t.w = t.width();							//its new value is kept the active cells area is obtained
 				for(i=0; i<t.ln; i++) mw+= t.c[i].w;
