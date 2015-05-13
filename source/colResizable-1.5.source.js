@@ -305,10 +305,16 @@
 	 * Event handler fired when the browser is resized. The main purpose of this function is to update
 	 * table layout according to the browser's size synchronizing related grips
 	 */
-	var onResize = function(){
+	 var onResize = function(){
 		for(t in tables){
 			var t = tables[t], i, mw=0;
-		    t.removeClass(SIGNATURE);                        //firefox doesn't like layout-fixed in some cases
+			try {
+		    	t.removeClass(SIGNATURE);					//firefox doesn't like layout-fixed in some cases
+		    } catch(e) {
+		   		if (e.name !== 'TypeError') {
+		   			console.log(e.stack);
+		   		} 
+		    }                    
             if (t.f && t.w != t.width()) {					//if the the table's width has changed and it is in fixed mode
 				t.w = t.width();							//its new value is kept the active cells area is obtained
 				for(i=0; i<t.ln; i++) mw+= t.c[i].w;
@@ -319,12 +325,17 @@
 				for(i=0; i<t.ln; i++) t.c[i].css("width", M.round(1000*t.c[i].w/mw)/10 + "%").l=true;
 				//c.l locks the column, telling us that its c.w is outdated
 			}
-			syncGrips(t.addClass(SIGNATURE));
+			try {
+				syncGrips(t.addClass(SIGNATURE));
+			} catch(e) {
+				if (e.name !== 'TypeError'){
+					console.log(e.stack);
+				}
+			}
 		}
 
 	};
-
-
+	
 	//bind resize event, to update grips position
 	$(window).bind('resize.'+SIGNATURE, onResize);
 
