@@ -308,10 +308,8 @@
 	var onResize = function(){
 		for(t in tables){
 			var t = tables[t], i, mw=0;
-		        // if(t.is("table") && t.hasClass(SIGNATURE)){
-			//     t.removeClass(SIGNATURE);                                   //firefox doesn't like layout-fixed in some cases
-                        // }
-			if (t.f && t.w != t.width()) {					//if the the table's width has changed and it is in fixed mode
+		    t.removeClass(SIGNATURE);                        //firefox doesn't like layout-fixed in some cases
+            if (t.f && t.w != t.width()) {					//if the the table's width has changed and it is in fixed mode
 				t.w = t.width();							//its new value is kept the active cells area is obtained
 				for(i=0; i<t.ln; i++) mw+= t.c[i].w;
 				//cell rendering is not as trivial as it might seem, and it is slightly different for
@@ -321,9 +319,7 @@
 				for(i=0; i<t.ln; i++) t.c[i].css("width", M.round(1000*t.c[i].w/mw)/10 + "%").l=true;
 				//c.l locks the column, telling us that its c.w is outdated
 			}
-		      if(typeof t !== "function"){
-			  syncGrips(t.addClass(SIGNATURE));
-		      }
+			syncGrips(t.addClass(SIGNATURE));
 		}
 
 	};
